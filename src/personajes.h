@@ -1,7 +1,7 @@
 #ifndef PERSONAJES_H
 #define PERSONAJES_H
 
-#include <stdio.h>
+#include <stdio.h> 
 #include <stdlib.h>
 #include <string.h>
 

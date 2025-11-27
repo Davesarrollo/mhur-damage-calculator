@@ -1,5 +1,11 @@
-versión 1.2.0
-- Ahora se muestra con mejor claridad el nombre y descripción de acciones especiales de aquellos personajes que tienen mas de una
-- Corregidas las siguientes descripciones para que encajen mejor con como se comporta realmente el personaje
-    - Accion Especial de Izuku Midoriya OFA
-    - Don especial Alpha de Izuku Midoriya OFA
+# Changelog
+
+## [1.2.0] - 2025-11-27
+### Changed
+- Refactorizar sistema de visualización de acciones especiales
+- Mejorar formato y legibilidad para personajes con múltiples habilidades
+### Fixed
+- Corregidas discrepancias entre descripciones y comportamiento real de:
+  - **Izuku Midoriya OFA**: 
+    - Acción Especial - Actualización de texto desriptivo 
+    - Don especial Alpha - Ajustar descripción para coincidir con mecánica real
