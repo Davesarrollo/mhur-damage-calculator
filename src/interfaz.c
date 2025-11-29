@@ -178,7 +178,7 @@ void showQuirkGroup(int c, int quirkSkill) {
                 break;
             }
 
-            printf("%6.1fs  ", variant.reload[lvl]);                 // Recarga
+            printf("%6.2fs  ", variant.reload[lvl]);                 // Recarga
             
             for (int k = 0; k < variant.countDamages; k++) {         // Contador daños
                 int tamanoEspacio = strlen(variant.components[k].name) / 2 - 1;
