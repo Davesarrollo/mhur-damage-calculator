@@ -13,5 +13,6 @@ void uncolor();
 void showQuirkSet(int c);
 void pauseProgram();
 void showSpecial(int c);
+void espacios(int n);
 
 #endif

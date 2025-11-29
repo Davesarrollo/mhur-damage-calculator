@@ -41,7 +41,7 @@ typedef struct {
     char name[55];
     char *description;
     int typeGestion;
-    int shotsOrPercentUsage[9];
+    float shotsOrPercentUsage[9];
     float reload[9];
     float fullReload[9];
     int countDamages;

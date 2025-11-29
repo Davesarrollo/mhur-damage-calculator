@@ -1,5 +1,6 @@
 # Configuración del compilador
-CC = gcc
+CC_LINUX = gcc
+CC_WINDOWS = x86_64-w64-mingw32-gcc 
 CFLAGS = -Wall -Wextra -std=c99 -Isrc
 TARGET = stats
 WINDOWS_TARGET = stats.exe
@@ -31,9 +32,9 @@ linux: $(OBJ)
 	@echo "✅ Ejecutable creado: $(TARGET)"
 
 # Regla específica para Windows
-windows: $(OBJ)
+windows: $(SRC)
 	@echo "🔨 Compilando para Windows..."
-	$(CC) $(CFLAGS) -o $(WINDOWS_TARGET) $(OBJ) -lm
+	$(CC_WINDOWS) $(CFLAGS) -o $(WINDOWS_TARGET) $(SRC) -lm
 	@echo "✅ Ejecutable creado: $(WINDOWS_TARGET)"
 
 # Regla para archivos objeto

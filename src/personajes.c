@@ -391,7 +391,7 @@ Character loadMidoriyaDefault() {                                       // Izuku
     alpha->variants[0].components[0] = (DamageComponent){
         "Daño",
         {58, 60, 62, 66, 68, 70, 72, 74, 80},
-        {1}
+        {1,1,1,1,1,1,1,1,1} 
         
     };
 
@@ -407,7 +407,7 @@ Character loadMidoriyaDefault() {                                       // Izuku
     alpha->variants[1].components[0] = (DamageComponent){
         "Daño",
         {80, 82, 84, 86, 90, 92, 94, 96, 100},
-        {1}
+        {1,1,1,1,1,1,1,1,1}
     };
 
     QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
@@ -426,7 +426,8 @@ Character loadMidoriyaDefault() {                                       // Izuku
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     beta->variants[0].components[0] = (DamageComponent){
         "Daño",
-        {120, 131, 142, 153, 158, 163, 168, 173, 180}
+        {120, 131, 142, 153, 158, 163, 168, 173, 180},
+        {1,1,1,1,1,1,1,1,1}
     };
 
     QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
@@ -438,12 +439,11 @@ Character loadMidoriyaDefault() {                                       // Izuku
         "Látigos negros",
         "Usa un látigo para capturar y atraer a los enemigos.\n ▰ Al usarlo en el aire, puedes desplazarse enganchándolo a las paredes o al suelo.",
         CHARGES,
-        {1, 1, 1, 1, 1, 1, 1, 1, 2},
-        {12, 11, 10, 10, 9.5, 9, 8.5, 8, 10},
-        {0},
-        0,
-        NULL
+        .reload = {1, 1, 1, 1, 1, 1, 1, 1, 2},
+        .shotsOrPercentUsage = {12, 11, 10, 10, 9.5, 9, 8.5, 8, 10},
     };
+    gamma->variants[0].countDamages = 0; // No inflige daño
+    gamma->variants[0].components = NULL;
 
     return c;
 }
@@ -470,7 +470,10 @@ Character loadMidoriyaFullBullet() {                      // Izuku Midoriya (Ful
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {11*5, 12*5, 13*5, 14*5, 15*5, 16*5, 17*5, 18*5, 19*5}};
+        .damage = {11, 12, 13, 14, 15, 16, 17, 18, 19},
+        .hits = {5,5,5,5,5,5,5,5,5}
+    };
+        
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->quirkSkill = BETA;
     beta->count = 1;
@@ -485,22 +488,26 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 4);
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Bajo",
-        .damage = {90, 100, 110, 115, 120, 125, 130, 135, 140}
+        .damage = {90, 100, 110, 115, 120, 125, 130, 135, 140},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Medio",
-        .damage = {100, 110, 120, 125, 130, 135, 140, 145, 150}
+        .damage = {100, 110, 120, 125, 130, 135, 140, 145, 150},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 
     beta->variants[0].components[2] = (DamageComponent){
         .name = "Alto",
-        .damage = {110, 120, 130, 135, 140, 145, 150, 155, 160}
+        .damage = {110, 120, 130, 135, 140, 145, 150, 155, 160},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 
     beta->variants[0].components[3] = (DamageComponent){
         .name = "Enganche",
-        .damage = {50,50,50,50,50,50,50,50,50}
+        .damage = {50,50,50,50,50,50,50,50,50},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->quirkSkill = GAMMA;
@@ -516,7 +523,9 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     gamma->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {100, 105, 110, 115, 120, 125, 128, 131, 135}};
+        .damage = {100, 105, 110, 115, 120, 125, 128, 131, 135},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
 
     return c;
 }
@@ -541,11 +550,13 @@ Character loadMidoriyaOFADefault() {                                // Izuku Mid
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 2);
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Suelo",
-        .damage = {80, 82, 84, 85, 88, 91, 94, 97, 100}
+        .damage = {80, 82, 84, 85, 88, 91, 94, 97, 100},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Aire",
-        .damage = {60, 64, 68, 70, 72, 74, 76, 78, 80}
+        .damage = {60, 64, 68, 70, 72, 74, 76, 78, 80},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->quirkSkill = BETA;
@@ -557,11 +568,21 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Se lanza hacia el objetivo a gran velocidad y golpea con un puñetazo.\n ▰ Mantén pulsado el botón para lanzarte más lejos.\n ▰ Antes de abalanzarse hacia su objetivo, lanzará un ataque en área.",
         .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
         .reload = {9, 9, 9, 8, 8, 8, 8, 8, 7}};
-    beta->variants[0].countDamages = 1;
-    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+    beta->variants[0].countDamages = 2;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 2);
+    
     beta->variants[0].components[0] = (DamageComponent){
-        .name = "Daño",
-        .damage = {100, 105, 110, 115, 120, 125, 130, 135, 140}};
+        .name = "Carga",
+        .damage = {14,15,16,18,19,20,21,22,23},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    
+    beta->variants[0].components[1] = (DamageComponent){
+        .name = "Embestida",
+        .damage = {100, 105, 110, 115, 120, 125, 130, 135, 140},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    
     beta->variants[1] = (QuirkVariant){
         "Detroit Smash Quíntuple",
         "Se puede activar volviendo a pulsar el botón o manteniéndolo pulsado mientras se está en modo Overdrive.\n ▰ Salta hacía arriba y se lanza en picado para realizar una combinación de 5 golpes que crearán una onda expansiva",
@@ -571,7 +592,9 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->variants[1].components = malloc(sizeof(DamageComponent) * 1);
     beta->variants[1].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {32 * 5, 33 * 5, 34 * 5, 35 * 5, 36 * 5, 37 * 5, 38 * 5, 39 * 5, 40 * 5}};
+        .damage = {32, 33, 34, 35, 36, 37, 38, 39, 40},
+        .hits = {5,5,5,5,5,5,5,5,5}
+    };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->quirkSkill = GAMMA;
     gamma->count = 2;
@@ -579,18 +602,26 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->variants[0] = (QuirkVariant){
         "Segunda transmisión",
         "Aumenta la velocidad de movimiento y la velocidad de ataque.\n ▰ Mientras el efecto se encuentre activo, pulsa de nuevo el botón para abalanzarte hacia la dirección de apuntado.\n ▰ Al golpear con un gancho desde el suelo en un ataque cuerpo a cuerpo, restaurarás la duración del efecto y aumentará la velocidad.\n ▰ Al golpear 3 veces, activarás el modo Overdrive.",
-        .shotsOrPercentUsage = {0},
-        .reload = {20, 20, 20, 18, 18, 18, 18, 18, 16}};
+        .typeGestion = TIME,
+        .shotsOrPercentUsage = {60, 70, 80, 90, 100, 110, 120, 130, 140},
+        .reload = {20, 20, 20, 18, 18, 18, 18, 18, 16}
+    };
+    gamma->variants[0].countDamages = 0; // No inflige daño
+    
     gamma->variants[1] = (QuirkVariant){
         "Detroit Smash Overdrive",
         "Se puede activar manteniendo pulsado el botón mientras se está en modo Overdrive.\n ▰ Se abalanza contra un enemigo cercano que se encuentre en la dirección hacia la que se apunte y asesta un golpe.",
-        .shotsOrPercentUsage = {0},
-        .reload = {0}};
+        .typeGestion = PERCENT,
+        .shotsOrPercentUsage = {30,30,30,30,30,30,30,30,30},
+        .reload = {0}
+    };
     gamma->variants[1].countDamages = 1;
     gamma->variants[1].components = malloc(sizeof(DamageComponent) * 1);
     gamma->variants[1].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {133, 136, 139, 142, 145, 148, 151, 153, 155}};
+        .damage = {133, 136, 139, 142, 145, 148, 151, 153, 155},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
     return c;
 }
 
@@ -645,13 +676,19 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
         "Carga giratoria capaz de golpear repetidamente a un enemigo y lanzarlo por los aires con una explosión final.\n ▰ Mantén pulsado el botón para aumentar la distancia de la carga.",
         .shotsOrPercentUsage = {1, 1, 1, 2, 2, 2, 2, 2, 2},
         .reload = {10, 10, 10, 10, 10, 10, 10, 10, 8}};
-    gamma->variants[0].countDamages = 1;
-    gamma->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+    gamma->variants[0].countDamages = 2;
+    gamma->variants[0].components = malloc(sizeof(DamageComponent) * 2);
 
     gamma->variants[0].components[0] = (DamageComponent){
-        .name = "Daño",
-        .damage = {120, 130, 140, 150, 155, 160, 165, 170, 180}};
-
+        .name = "Giro(Máximo)",
+        .damage = {5,5,5,5,5,5,5,5,5},
+        .hits = {12,12,12,14,14,14,14,14,16}
+    };
+    gamma->variants[0].components[1] = (DamageComponent){
+        .name = "Explosión",
+        .damage = {120, 130, 140, 150, 155, 160, 165, 170, 180},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
     return c;
 }
 
@@ -676,7 +713,9 @@ Character loadBakugoAmetralladora() {                   // Katsuki Bakugo (Ametr
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {18, 19, 20, 21, 22, 23, 24, 25, 26}};
+        .damage = {18, 19, 20, 21, 22, 23, 24, 25, 26},
+        .hits = {4,4,4,4,4,4,4,4,4}
+    };
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->quirkSkill = BETA;
     beta->count = 1;
@@ -743,8 +782,9 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Home Run Cometa",
         "Hace girar los escombros que flotan por el aire y los lanza hacia su objetivo.\n ▰ Mantén pulsado el botón para girar los escombros y muévelos para cambiarlos de posición.",
         .typeGestion = PERCENT,
-        .shotsOrPercentUsage = {14, 14, 14, 13, 13, 13, 13, 13, 12},
-        .reload = {9, 9, 9, 8.5, 8.5, 8.5, 8.5, 8.5, 8}};
+        .shotsOrPercentUsage = {22, 22, 22, 20, 20, 20, 20, 20, 19},
+        .reload = {9, 9, 9, 8.5, 8.5, 8.5, 8.5, 8.5, 8}
+    };
 
     beta->variants[0].countDamages = 2;
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 2);
@@ -752,10 +792,13 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Girando",
         .damage = {35, 37, 39, 41, 42, 43, 44, 45, 47},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Lanzando",
-        .damage = {50, 56, 62, 68, 70, 72, 74, 76, 80}};
+        .damage = {50, 56, 62, 68, 70, 72, 74, 76, 80},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->quirkSkill = GAMMA;
     gamma->count = 2;
@@ -810,7 +853,7 @@ Character loadOchacoZeroSatellites() {                // Ochako Uraraka (Zero Sa
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 2);
 
     alpha->variants[0].components[0] = (DamageComponent){
-        .name = "Bateo",
+        .name = "Bateo ",
         .damage = {117,122,127,132,137,142,157,152,157}
     };
     alpha->variants[0].components[1] = (DamageComponent){
@@ -839,8 +882,8 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->variants[0] = (QuirkVariant){
         "Zero Satellites",
         "Ataque que utiliza los escombros que tiene adheridos a los cables para realizar un ataque frontal. Puedes controlar el ataque con tu movimiento.",
-        .typeGestion = PERCENT,
-        .shotsOrPercentUsage = {100,100,100,100,100,100,100,100,100},
+        .typeGestion = TIME,
+        .shotsOrPercentUsage = {2,2,2,2.5,2.5,2.5,2.5,2.5,3},
         .reload = {6,6,6,6,6,6,6,6,6}};
     beta->variants[0].countDamages = 1;
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);

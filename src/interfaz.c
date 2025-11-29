@@ -115,12 +115,18 @@ void showQuirkSet(int c) {
     }
 }
 
+void espacios(int n) {
+    for (int i = 0; i < n; i++)
+        putchar(' '); 
+}
+
 void showQuirkGroup(int c, int quirkSkill) {
     QuirkGroup group = characters[c].quirkSet.quirkGroup[quirkSkill];
 
     for (int i = 0; i < group.count; i++) {
         QuirkVariant variant = group.variants[i];
 
+        // Título del Quirk 
         color(c);
         printf("%s ", variant.name);
         int tamanoCadena = strlen(variant.name);
@@ -137,72 +143,59 @@ void showQuirkGroup(int c, int quirkSkill) {
 
         printf("\n %s\n", variant.description);
 
-         // Encabezado dinámico
-        if (variant.countDamages > 1)
-            printf("\n                            \tDaño:");
-
-        if (variant.typeGestion == CHARGES) {
-            printf("\033[1m");
-            printf("\n Nivel  Tiros ");
-            if (variant.reload[0] > 0)
-                printf(" Recarga ");
-            for (int k = 0; k < variant.countDamages; k++) {
-                printf(" %s\t", variant.components[k].name);
-            }
-            uncolor();
-            printf("\n");
-
-            for (int lvl = 0; lvl < 9; lvl++) {
-                printf("   %d   ", lvl + 1);
-                printf("%4d   ", variant.shotsOrPercentUsage[lvl]);
-                if (variant.reload[lvl] > 0)
-                    printf("%6.1fs  ", variant.reload[lvl]);
-                for (int k = 0; k < variant.countDamages; k++) {
-                    int tamanoEspacio = strlen(variant.components[k].name) / 2 - 1;
-                    
-                    for (int i = 0; i < tamanoEspacio; i++) {
-                        putchar(' ');
-                    }
-                    printf("%3.0f", ceil(variant.components[k].damage[lvl]));
-                    for (int i = 0; i < tamanoEspacio; i++) {
-                        putchar(' ');
-                    }
-                    putchar('\t');
-                }
-                printf("\n");
-            }
+         // Encabezado de tabla
+         printf("\033[1m");
+        if (variant.countDamages > 1){            //en caso de más de un daño
+            printf("\n                 \tDaño:");
         }
-        else {
-            printf("\033[1m");
-            printf("\n Nivel  Gasto ");
-            if (variant.reload[0] > 0)
-                printf(" Recarga ");
-            for (int k = 0; k < variant.countDamages; k++) {
-                printf(" %s\t", variant.components[k].name);
-            }
-            uncolor();
-            printf("\n");
+        
+        printf("\n Nivel ");
+        switch (variant.typeGestion){
+            case CHARGES: printf(" Tiros "); break;
+            case PERCENT: printf(" Gasto "); break;
+            case TIME:    printf(" Tiempo "); break;
+        
+        default:
+            break;
+        }
+        printf(" Recarga ");
 
-            for (int lvl = 0; lvl < 9; lvl++) {
-                printf("   %d   ", lvl + 1);
-                printf("%4d%%  ", variant.shotsOrPercentUsage[lvl]);
-                if (variant.reload[lvl] > 0)
-                    printf("%6.1fs  ", variant.reload[lvl]);
-                for (int k = 0; k < variant.countDamages; k++) {
-                    int tamanoEspacio = strlen(variant.components[k].name) / 2 - 1;
+        for (int k = 0; k < variant.countDamages; k++) {  //imprime componentes de daño
+            printf(" %s\t", variant.components[k].name);
+        }
+        uncolor();
+        putchar('\n');
 
-                    for (int i = 0; i < tamanoEspacio; i++) {
-                        putchar(' ');
-                    }
-                    printf("%3.0f", ceil(variant.components[k].damage[lvl]));
-                    for (int i = 0; i < tamanoEspacio; i++) {
-                        putchar(' ');
-                    }
-                    putchar('\t');
-                }
-                printf("\n");
+         // Cuerpo de la tabla 
+        for (int lvl = 0; lvl < 9; lvl++) {
+            printf("   %d   ", lvl + 1);                             // Nivel
+            
+            switch (variant.typeGestion){
+                case CHARGES:printf("%4.0f   ",  variant.shotsOrPercentUsage[lvl]); break;
+                case PERCENT:printf("%4.0f%%  ", variant.shotsOrPercentUsage[lvl]); break;
+                case TIME:   printf("%6.1fs ",variant.shotsOrPercentUsage[lvl]); break;
+            default:
+                break;
             }
-            printf("\n");
+
+            printf("%6.1fs  ", variant.reload[lvl]);                 // Recarga
+            
+            for (int k = 0; k < variant.countDamages; k++) {         // Contador daños
+                int tamanoEspacio = strlen(variant.components[k].name) / 2 - 1;
+                float danoBase = variant.components[k].damage[lvl];
+                int hits = variant.components[k].hits[lvl]; 
+               
+                if (hits == 0) hits = 1;                           //mientras inicializo hits
+               
+                float danoTotal = danoBase * hits;
+                
+                espacios(tamanoEspacio);
+                printf("%3.0f", ceil(danoTotal));// daño(s)
+                espacios(tamanoEspacio);
+                
+                putchar('\t');
+            }
+            putchar('\n');
         }
     }
 }
