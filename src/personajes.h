@@ -126,6 +126,7 @@ Character loadHawksCuchillada();
 Character loadLadyDefault();
 Character loadShigarakiDefault();
 Character loadShigarakiCatastrofe();
+Character loadShigarakiMilManos();
 Character loadAFODefault();
 Character loadAFOYoungDefault();
 Character loadDabiDefault();

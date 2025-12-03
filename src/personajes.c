@@ -3597,6 +3597,102 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
+Character loadShigarakiMilManos() {    // Tomura Shigaraki (Destrucción de las mil manos)
+    Character c;
+    c.base = &shigaraki;
+    c.afinity = &tecnico;
+    c.hp = 350;
+    strcpy(c.quirkSet.name, "Destruccion de las mil manos");
+
+    QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
+    alpha->quirkSkill = ALPHA;
+    alpha->count = 2;
+    alpha->variants = malloc(sizeof(QuirkVariant) * 2);
+
+    alpha->variants[0] = (QuirkVariant){
+        "Destrucción de las mil manos",
+        "Extiende los brazos hinchados en dirección a su objetivo.\n ▰ Puede atravesar la pared e impactar a los enemigos que hay detrás de ella.\n ▰ Cuando se active, lanzará un ataque de largo alcance hacia delante.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {3,3,3,4,4,4,4,4,5},
+        .reload = {2,2,2,2,2,2,2,2,2}
+    };
+    alpha->variants[0].countDamages = 2;
+    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 2);
+
+    alpha->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {45,46,47,48,49,50,51,52,53},
+        .hits = {3,3,3,3,3,3,3,3,3}
+    };
+
+    alpha->variants[0].components[1] = (DamageComponent){
+        .name = "Onda",
+        .damage = {25,25,25,25,25,25,25,25,25},
+        .hits = {2,2,2,2,2,2,2,2,2}
+    };
+
+    alpha->variants[1] = (QuirkVariant){
+        "Búsqueda",
+        "Podrás ver a través de las paredes, y solo en tu pantalla, la salud y la posición de los enemigos\n ▰ dentro del alcance de tu don especial α en el modo puntería durante un tiempo determinado. ",
+        .typeGestion = TIME,
+        .shotsOrPercentUsage = {3,3,3,4,4,4,4,4,5},
+        .reload = {2,2,2,2,2,2,2,2,2}
+    };
+    alpha->variants[1].countDamages = 0;
+    alpha->variants[1].components = NULL;
+
+QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
+    beta->quirkSkill = BETA;
+    beta->count = 1;
+    beta->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    beta->variants[0] = (QuirkVariant){
+        "Colapso sísmico",
+        "Salta en el aire, hincha los brazos y crea dos ondas de choque al lanzarse en picado\n ▰ Puedes cancelar el movimiento volviendo a apretar el botón durante el salto. ",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
+        .reload = {6, 6, 6, 6, 6, 6, 6, 6, 6}
+    };
+    beta->variants[0].countDamages = 3;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 3);
+
+    beta->variants[0].components[0] = (DamageComponent){
+        .name = "Cuerpo",
+        .damage = {144,151,158,165,172,179,186,193,200},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+
+    beta->variants[0].components[1] = (DamageComponent){
+        .name = "Onda inicial",
+        .damage = {56,59,62,65,68,71,74,77,80},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    
+    beta->variants[0].components[2] = (DamageComponent){
+        .name = "Onda final",
+        .damage = {88,92,96,100,104,108,112,116,120},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+
+QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
+    gamma->quirkSkill = GAMMA;
+    gamma->count = 1;
+    gamma->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    gamma->variants[0] = (QuirkVariant){
+        "Superregeneración",
+        "Recupera de forma gradual PS y PG durante un tiempo determinado.\n ▰ Puedes cancelarlo volviendo a apretar el botón.\n ▰ Mientras está activo el efecto, los enemigos cercanos y los enemigos a los que hayas alcanzado con tu don especial entrarán en estado de deterioro.\n ▰ La duración del efecto se alargará si se usa un don especial o se recibe un ataque enemigo mientras el efecto siga activo. ",
+        .typeGestion = TIME,
+        .shotsOrPercentUsage = {7,8,9,10,11,12,13,14,15},
+        .reload = {.2,.2,.2,.18,.18,.18,.18,.18,.16}
+    };
+
+    gamma->variants[0].countDamages = 0;
+    gamma->variants[0].components = NULL;
+    return c;
+}
+
+
 Character loadAFODefault() {                                               // All For One
     Character c;
     c.base = &afo;
@@ -4490,6 +4586,7 @@ int loadCharacters(Character *arr) {
     arr[index++] = loadLadyDefault();
     arr[index++] = loadShigarakiDefault();
     arr[index++] = loadShigarakiCatastrofe();
+    arr[index++] = loadShigarakiMilManos();
     arr[index++] = loadAFODefault();
     arr[index++] = loadAFOYoungDefault();
     arr[index++] = loadDabiDefault();
