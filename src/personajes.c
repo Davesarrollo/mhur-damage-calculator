@@ -3256,7 +3256,7 @@ Character loadHawksCuchillada() {                          // Hawks (Cuchillada 
     Character c;
     c.base = &hawks;
     c.afinity = &agresivo;
-    c.hp = 275;
+    c.hp = 300;
     strcpy(c.quirkSet.name, "Cuchillada de Pluma");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -3692,7 +3692,6 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
-
 Character loadAFODefault() {                                               // All For One
     Character c;
     c.base = &afo;
@@ -3756,7 +3755,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0] = (QuirkVariant){
         "Aliento negro",
-        "Ataque que aleja a los enemigos.\n ▰ Mantén presionado el botón para lanzar hacia delante a los enemigos que se encuentren cerca de ti.",
+        "Ataque que aleja a los enemigos.\n ▰ Mantén presionado el botón para teletrasportar a los enemigos frente a ti.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {1, 1, 1, 1, 1, 1, 1, 1, 1},
         .reload = {12,11.5,11,10.5,10,9.5,9,8.5,8}};
@@ -4544,7 +4543,6 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     };
     return c;
 }
-
 
 int loadCharacters(Character *arr) {
     int index = 0;

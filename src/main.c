@@ -1,6 +1,7 @@
 #include "personajes.h"
 #include "interfaz.h"
 #include <stdio.h>
+#include "stats.h"
 
 #ifdef _WIN32
     #include <windows.h>
@@ -11,30 +12,47 @@
 #endif
 
 int main() {
-    int personajeSeleccionado = 0;
     system("chcp 65001");
-
     numCharacters = loadCharacters(characters);
-
-    do {
-        listCharacters();
-        printf("\nEscribe el numero del personaje del cual quieras saber su información: ");
-        scanf("%d", &personajeSeleccionado);
-
-        while (personajeSeleccionado < 0 || personajeSeleccionado >= MAX_CHARACTER) {
-            printf("%d no pertenece a ningun personaje \n", personajeSeleccionado);
-            printf("Escribe el numero del personaje del cual quieras saber su información: ");
-            scanf("%d", &personajeSeleccionado);
-        }
-        
-        system(CLEAR);
-        showCharacter(personajeSeleccionado - 1);
-        showSpecial(personajeSeleccionado - 1);
-        showQuirkSet(personajeSeleccionado - 1);
-        pauseProgram();
-        printf("\n\n");
-
-    } while (personajeSeleccionado != 0);
     
+    int opcion = 0;
+
+    while (1){  
+        system(CLEAR);
+        int centrar = tamanoTerminal()/2-25;
+        putchar('\n');
+        espacios(centrar);printf("╔═════════════════════════════════════════════════╗\n");
+        espacios(centrar);printf("║ ████    ████ ████   ████ ████  ████ █████████   ║\n");
+        espacios(centrar);printf("║░░████  ████ ░░██   ░░██ ░░██  ░░██ ░░██░░░░░██  ║\n");
+        espacios(centrar);printf("║ ░██░████░██  ░██    ░██  ░██   ░██  ░██    ░██  ║\n");
+        espacios(centrar);printf("║ ░██░░██ ░██  ░█████████  ░██   ░██  ░████████   ║\n");
+        espacios(centrar);printf("║ ░██ ░░  ░██  ░██░░░░░██  ░██   ░██  ░██░░░░░██  ║\n");
+        espacios(centrar);printf("║ ░██     ░██  ░██    ░██  ░██   ░██  ░██    ░██  ║\n");
+        espacios(centrar);printf("║ ████    ████ ████   ████ ░░██████   ████   ████ ║\n");
+        espacios(centrar);printf("║░░░░    ░░░░ ░░░░  ░░░░░   ░░░░░░   ░░░░   ░░░░  ║\n");
+        espacios(centrar);printf("║  ┌───────────────────────────────────────────┐  ║\n");
+        espacios(centrar);printf("║  │    1. Estadísticas de Personajes   📊     │  ║\n");
+        espacios(centrar);printf("║  ├───────────────────────────────────────────┤  ║\n");
+        espacios(centrar);printf("║  │    2. Randomizador                 🎲     │  ║\n");
+        espacios(centrar);printf("║  ├───────────────────────────────────────────┤  ║\n");
+        espacios(centrar);printf("║  │    0. Salir del Programa           🚪     │  ║\n");
+        espacios(centrar);printf("║  └───────────────────────────────────────────┘  ║\n");
+        espacios(centrar);printf("╚═════════════════════════════════════════════════╝\n");
+        printf("\nSelecciona una opción: ");
+        scanf("%d", &opcion);
+        
+        switch (opcion) {
+            case 1: stats(); break;
+            case 2: printf("Funcionalidad de Random no implementada aún.\n"); break;
+            case 0: printf("Saliendo del programa.\n"); break;
+    
+            default:
+                printf("Opción no válida. Saliendo del programa.\n");
+                break;
+        }
+        if (opcion == 0)
+            break;
+    }
     return 0;
 }
+
