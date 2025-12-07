@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHARACTER 49
+#define MAX_CHARACTER 50
 
 // Enums
 enum quirkSkills {

@@ -4,7 +4,7 @@ CC_WINDOWS = x86_64-w64-mingw32-gcc
 CFLAGS = -Wall -Wextra -std=c99 -Isrc
 TARGET = stats
 WINDOWS_TARGET = stats.exe
-SRC = src/main.c src/personajes.c src/interfaz.c src/stats.c
+SRC = src/main.c src/personajes.c src/interfaz.c src/stats.c src/random.c
 OBJ = $(SRC:.c=.o)
 
 # Detectar sistema operativo

@@ -2,6 +2,7 @@
 #include "interfaz.h"
 #include <stdio.h>
 #include "stats.h"
+#include "random.h"
 
 #ifdef _WIN32
     #include <windows.h>
@@ -43,7 +44,7 @@ int main() {
         
         switch (opcion) {
             case 1: stats(); break;
-            case 2: printf("Funcionalidad de Random no implementada aún.\n"); break;
+            case 2: random(); break;
             case 0: printf("Saliendo del programa.\n"); break;
     
             default:
