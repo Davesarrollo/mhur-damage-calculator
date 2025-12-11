@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
+#include "interfaz.h"
 
 int mhuRandom(int valorSuperior);
 // int formularioRandoms();
@@ -90,33 +91,45 @@ void random(){
     system("clear");
     
     int colorResalte = rand() % 256;
-    
+    int anchoTerminal = tamanoTerminal();
+
     /*----------------------------imprime titulo----------------------------*/
-    printf("\x1b[38;5;%dm ===================================\n", colorResalte);
-    printf("      Aleatorizador del Maijiro\n");
-    printf(" ===================================\x1b[0m\n\n");
+    printf("\x1b[38;5;%dm", colorResalte);
     
+    for (int i = 0; i < anchoTerminal; i++)
+        printf("=");
+    espacios(anchoTerminal/2 - 13);
+    printf("Aleatorizador del Maijiro\n");
+    for (int i = 0; i < anchoTerminal-1; i++)
+        printf("=");
+    printf("\x1b[0m\n");
+    sleep(1);
+
     getchar();
     while (1){
-        printf("Personaje:%s\n", listRandomCharacters[randCharacter()]);
-        printf("Afinidad: %s\n", afinnitis[randAfinnity() - 1]);
+        printf("\tPersonaje:%s\n", listRandomCharacters[randCharacter()]);
+        printf("\tAfinidad: %s\n", afinnitis[randAfinnity() - 1]);
         int level = randLevel();
-        printf("Nivel:     %d\n", level);
+        printf("\tNivel:     %d", level);
         if (level==1){
-            printf("\x1b[38;5;%dm\t\t\t%s", colorResalte, frases1[rand() % 10]);
+            printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases1[rand() % 10]);
         }
         if (level==9)
-            printf("\x1b[38;5;%dm\t\t\t%s", colorResalte, frases9[rand() % 10]);
+            printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases9[rand() % 10]);
 
-            // Leer la entrada del usuario
-            char input[16];
-            fgets(input, sizeof(input), stdin);
+        // Leer la entrada del usuario
+        putchar('\n');
+        char input[16];
+        fgets(input, sizeof(input), stdin);
             
-            // Si es "0\n", salir
-            if (input[0] == '0')
-                break;
+        if (input[0] == '0')
+            break;
         
-        printf("\x1b[38;5;%dm ===================================\x1b[0m\n", colorResalte);
+        printf("\x1b[38;5;%dm", colorResalte);
+        for (int i = 0; i < anchoTerminal-1; i++)
+            printf("=");
+        printf("\x1b[0m\n");
+        
     }
     return;
 }

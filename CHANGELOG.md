@@ -1,4 +1,15 @@
 # CHANGELOG
+## [2.0.0]
+### Added
+- Se implementa menu principal para unir el randomizador
+- Se implementa función base del randomizador
+
+### Changed
+- γ: Aliento negro **(All For One)** → Descripción modificada para mayor claridad
+
+### Fixed
+- Corregido PS de **Hawks(*Cuchillada de Pluma*)**
+
 ## [1.3.0] - 2025-12-03
 
 ### Added
