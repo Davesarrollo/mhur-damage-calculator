@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHARACTER 50
+#define MAX_CHARACTER 52
 
 // Enums
 enum quirkSkills {
@@ -136,6 +136,7 @@ Character loadTogaBaile();
 Character loadTwiceDefault();
 Character loadCompressDefault();
 Character loadKurogiriDefault();
+Character loadOverhaulNagantDefault();
 Character loadOverhaulDefault();
 // Agregar aquí otros prototipos de carga de personajes...
 

@@ -1,5 +1,17 @@
 # CHANGELOG
-## [2.0.0]
+## [2.1.0] - 2026-01-30
+### Added
+- Nuevo personaje: Fumikage Tokoyami
+
+### Changed
+- Actualizadas estadísticas de todos los personajes al parche actual
+- Revisión completa de balance según últimos cambios del juego
+
+### Maintenance
+- Actualización post-inactividad de 1.5 meses
+- Verificación de consistencia de datos
+
+## [2.0.0] - 2025-12-10
 ### Added
 - Se implementa menu principal para unir el randomizador
 - Se implementa función base del randomizador

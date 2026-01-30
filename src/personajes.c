@@ -116,6 +116,17 @@ baseCharacter momo = {
     0,
     HEROE
 };
+baseCharacter tokoyami = {
+    "Fumikage Tokoyami",
+    "Sombra Oscura se lanzará en dirección al objetivo, atravesando a los enemigos y moviéndose a lo largo de las paredes y el suelo. ",
+    2,
+    (SpecialVariants[]){
+        {"Black Ankh", "Pulsa brevemente el botón para envolverte con Sombra Oscura.\n ▰ Mientras esté activo el efecto, los ataques cuerpo a cuerpo y tus movimientos se potenciarán.\n ▰ Pulsa de nuevo el botón o usa un don especial para cancelar la técnica."},
+        {"Alas de brazos azabache"," Mantén pulsado el botón para saltar más alto.\n ▰ Puede activarse en el aire.\n ▰ Impúlsate en el aire para planear cuando quieras.\n ▰ Puede activarse mientras Black Ankh esté activo y se pueden utilizar objetos mientras se planea."}
+    },
+    0,
+    HEROE
+};
 baseCharacter denki = {
     "Denki Kaminari",
     "¡Su don es la electricidad! ¡Electrocuta a los enemigos, con lo que puede controlar sus alrededores!" ,
@@ -369,6 +380,17 @@ baseCharacter kurogiri = {
     0,
     VILLANO
 };
+baseCharacter nagant ={
+    "Lady Nagant",
+    "¡Una prisionera fugada del Tártaro! ¡Irá a cumplir su misión con el don que se le ha otorgado: Rifle!",
+    2,
+    (SpecialVariants[]){
+        {"Modo alcance","Mira a través de una mira telescópica y cambia el aumento de la misma al apuntar con ella.\n ▰ Dispara balas con tu don especial α.\n ▰ Estas balas pueden atravesar a tus enemigos y el daño aumentará si impacta en la cabeza."},
+        {"Air Walk","Puedes saltar una vez mientras estás en el aire.\n ▰ Puedes volver a saltar tocando una pared o el suelo o utilizando el don especial γ."}
+    },
+    0,
+    VILLANO
+};
 baseCharacter overhaul = {
     "Overhaul",
     "¡Es el jefe de la familia Shie Hassaikai! ¡Domina el terreno y derrota a tus enemigos con tu don versátil!",
@@ -537,7 +559,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
         "Ataque que levanta el suelo con un pisotón fuerte.\n ▰ Mantén pulsado el botón para subir al terreno elevado y dar un gran salto.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
-        .reload = {6, 6, 6, 6, 6, 6, 6, 6, 6}};
+        .reload = {6, 6, 6, 5.5, 5.5, 5.5, 5.5, 5.5, 5}};
     gamma->variants[0].countDamages = 1;
     gamma->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     gamma->variants[0].components[0] = (DamageComponent){
@@ -608,7 +630,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Detroit Smash Quíntuple",
         "Se puede activar volviendo a pulsar el botón o manteniéndolo pulsado mientras se está en modo Overdrive.\n ▰ Salta hacía arriba y se lanza en picado para realizar una combinación de 5 golpes que crearán una onda expansiva",
         .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
+        .shotsOrPercentUsage = {1,1,1,1,1,1,1,1,1},
         .reload = {9, 9, 9, 8, 8, 8, 8, 8, 7}};
     beta->variants[1].countDamages = 1;
     beta->variants[1].components = malloc(sizeof(DamageComponent) * 1);
@@ -918,15 +940,23 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         .typeGestion = TIME,
         .shotsOrPercentUsage = {2,2,2,2.5,2.5,2.5,2.5,2.5,3},
         .reload = {6,6,6,6,6,6,6,6,6}};
-    beta->variants[0].countDamages = 1;
-    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+    beta->variants[0].countDamages = 2;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 2);
 
     beta->variants[0].components[0] = (DamageComponent){
-        .name = "Daño",
-        .damage = {24,25,26,26,27,28,28,29,30}
+        .name = "Minimo",
+        .damage = {24,25,26,26,27,28,28,29,30},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
+    beta->variants[0].components[1] = (DamageComponent){
+        .name = "Maximo",
+        .damage = {24,25,26,26,27,28,28,29,30},
+        .hits = {5,5,5,5,5,5,5,5,5}
+    };
+
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->quirkSkill = GAMMA;
+    
     gamma->count = 2;
     gamma->variants = malloc(sizeof(QuirkVariant) * 2);
 
@@ -985,7 +1015,7 @@ Character loadIidaDefault() {                                               // T
         "Rueda de motor",
         "Ataque cuerpo a cuerpo con el que carga girando hacia delante.",
         .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {3, 3, 3, 3, 3, 3, 3, 3, 3},
+        .shotsOrPercentUsage = {4,4,4,4,4,4,4,4,4},
         .reload = {2, 2, 2, 1.5, 1.5, 1.5, 1.5, 1.5, 1}
     };
     alpha->variants[0].countDamages = 1;
@@ -1012,7 +1042,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {100,108,116,124,126,128,130,132,140},
+        .damage = {110,115,120,125,130,135,140,145,150},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -1057,7 +1087,7 @@ Character loadShotoDefault() {                                          // Shôt
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {54, 59, 63, 68, 70, 72, 73, 75, 77},
+        .damage = {54, 58.5, 63, 67.5, 69.3, 71.1, 72.9, 74.7, 76.5},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -1078,7 +1108,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {130,138,146,154,161,168,175,182,200},
+        .damage = {130,138,146,150,152,154,156,158,160},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -1090,7 +1120,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0] = (QuirkVariant){
         "Estalagmita de hielo",
-        "Ataque de hielo con el que se desliza por el suelo. Los enemigos alcanzados quedarán congelados y no podrán moverse durante un cierto período de tiempo.",
+        "Ataque de hielo con el que se desliza por el suelo.\n ▰ Los enemigos alcanzados quedarán congelados y no podrán moverse durante un cierto período de tiempo.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
         .reload = {5,5,5,4.5,4.5,4.5,4.5,4.5,4}};
@@ -1251,7 +1281,7 @@ Character loadTsuyuDefault() {                                             // Ts
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {56, 60, 64, 68, 70, 72, 74, 75, 77},
+        .damage = {55.25, 59.5, 63.75, 68, 69.7, 71.4, 73.1, 74.8, 76.5},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -1273,14 +1303,15 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Suelo",
-        .damage = {76, 81, 86, 91, 94, 96, 99, 102, 105},
+        .damage = {76, 80.75, 85.5, 90.25, 93.1, 95.95, 98.8, 101.65, 104.5},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Aire",
-        .damage = {63, 68, 72, 77, 80, 82, 85, 88, 90},
+        .damage = {63, 67.5, 72, 76.5, 79.2, 81.9, 84.6, 87.3, 90},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
+
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     gamma->quirkSkill = GAMMA;
     gamma->count = 1;
@@ -1399,11 +1430,9 @@ Character loadKirishimaRedDrive() {                       // Eijirô Kirishima (
         .damage = {38, 40, 42, 46, 48, 50, 52, 54, 57},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
-    
-    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
 
     alpha->variants[0].components[0] = (DamageComponent){
-        .name = "Final",
+        .name = "Daño",
         .damage = {38, 40, 42, 46, 48, 50, 52, 54, 57},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
@@ -1519,7 +1548,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0].components[0] = (DamageComponent){
         .name = "Cañon",
-        .damage = {85,90,95,100,105,110,115,120,125},
+        .damage = {80,85,90,95,98,101,104,107,110},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     gamma->variants[0].components[1] = (DamageComponent){
@@ -1528,6 +1557,68 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
+    return c;
+}
+
+Character loadTokoyamiDefault() {                                         // Katsuki Bakugo
+    Character c;
+    c.base = &tokoyami;
+    c.afinity = &tanque;
+    c.hp = 300;
+    strcpy(c.quirkSet.name, "Default");
+
+    QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
+    alpha->quirkSkill = ALPHA;
+    alpha->count = 1;
+    alpha->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    alpha->variants[0] = (QuirkVariant){
+        "Rágnarok",
+        "Dark Shadow se lanzará en dirección al objetivo, atravesando a los enemigos y moviéndose a lo largo de las paredes y el suelo.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {3,3,3,3,3,3,3,3,3},
+        .reload = {3,3,3,2.5,2.5,2.5,2.5,2.5,2}};
+    alpha->variants[0].countDamages = 1;
+    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+
+    alpha->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {50,52,54,55,56,57,58,59,60},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
+    beta->quirkSkill = BETA;
+    beta->count = 1;
+    beta->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    beta->variants[0] = (QuirkVariant){
+        "Sombra espiral de tinieblas",
+        "Dark Shadow se lanzará en dirección al objetivo y, si golpea a un enemigo u obstáculo, se girará dentro de un alcance determinado y lanzará un ataque. ",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {1,1,1,1,1,1,1,1,1},
+        .reload = {12,12,12,11,11,11,11,11,10}
+    };
+    beta->variants[0].countDamages = 1;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+
+    beta->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {16,17,18,19,20,21,22,23,24},
+        .hits = {5,5,5,5,5,5,5,5,5}
+    };
+QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
+    gamma->quirkSkill = GAMMA;
+    gamma->count = 1;
+    gamma->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    gamma->variants[0] = (QuirkVariant){
+        "Escudo de sombra azabache",
+        "Sombra Oscura aparece y bloquea los disparos y ataques enemigos.\n ▰ Se podrá activar aún estando tumbado y se podrá cancelar si se vuelve a pulsar el botón o se ataca una vez más.\n ▰ Mantén pulsado el botón para hacer que Sombra Oscura salga en la dirección a la que apunte la cámara.\n ▰ Podrás hacer otras acciones mientras Sombra Oscura esté presente.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {150,160,170,190,200,210,220,230,250},
+        .reload = {1,1,1,1,1,1,1,1,1}
+    };
+    gamma->variants[0].countDamages = 0;
     return c;
 }
 
@@ -1674,7 +1765,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Lanza numerosas trampas que siguen a los enemigos que se acerquen a ellas.\n ▰ Si un enemigo recibe algún impacto, su posición se volverá visible para ti y para tus aliados a través de las paredes.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
-        .reload = {9.5,9.5,9.5,9,9,9,9,9,9}
+        .reload = {8,8,8,8,8,8,8,8,8}
     };
     beta->variants[0].countDamages = 2;
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 2);
@@ -1723,7 +1814,7 @@ Character loadMonomaDefault() {                                           // Nei
     Character c;
     c.base = &monoma;
     c.afinity = &tecnico;
-    c.hp = 250;
+    c.hp = 300;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -1876,7 +1967,7 @@ Character loadKendoPalmasGemelas() {                     // Itsuka Kendo (Palmas
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Normal",
-        .damage = {50,52,54,55,56,57,58,59,60}
+        .damage = {25,27,29,30,32,34,36,38,40}
     };
 
     alpha->variants[0].components[1] = (DamageComponent){
@@ -1932,11 +2023,11 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0].components[0] = (DamageComponent){
         .name = "Giro",
-        .damage = {60,62,64,68,70,72,74,76,80}
+        .damage = {50,52,54,55,57,59,61,63,65}
     };
     gamma->variants[0].components[1] = (DamageComponent){
         .name = "Final",
-        .damage = {75,78,81,85,87,89,91,93,95}};
+        .damage = {60,62,64,66,68,70,72,74,75}};
 
     return c;
 }
@@ -2008,7 +2099,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0] = (QuirkVariant){
         "Crucifixión",
-        "Ataque con el que atrapa a los enemigos que tiene frente a ella usando su cabello y les provoca daño directo a sus PS.",
+        "Ataque con el que atrapa a los enemigos que tiene frente a ella usando su cabello y les provoca daño directo a sus PS, además de recuperar PS y PG según el daño provocado.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {1,1,1,1,1,1,1,1,1},
         .reload = {1,1,1,1,1,1,1,1,1}
@@ -2230,7 +2321,8 @@ QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Normal",
-        .damage = {65,68,71,73,75,77,79,81,85}
+        .damage = {55,58,61,63,65,67,69,71,75},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Punta",
@@ -2249,7 +2341,7 @@ QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
 
     alpha->variants[1].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {40,43,46,50,52,54,56,58,60},
+        .damage = {20,21,22,24,25,26,27,28,30},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -2347,7 +2439,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     
     beta->variants[0].components[0] = (DamageComponent){
-        .name = "Maximo",
+        .name = "Minimo",
         .damage = {21,22,23,25,26,27,28,30,33},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
@@ -2488,7 +2580,7 @@ Character loadAllMightDefault() {                                            // 
 
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Onda",
-        .damage = {0,0,0,20,20,20,20,20,20},
+        .damage = {0,0,0,20,21,22,23,24,25},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     
@@ -2579,7 +2671,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Ataque que lanza una gran onda de choque con un tajo cruzado.\n ▰ Mantén pulsado el botón para lanzarte hacia delante y golpear a los enemigos con ese tajo cruzado. ",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {3, 3, 3, 3, 3, 3, 4, 4, 4},
-        .reload = {6, 6, 6, 6, 6, 6, 6, 6, 6}};
+        .reload = {7.7,7.7,7.7,7.2,7.2,7.2,7,2,6.8}};
     beta->variants[0].countDamages = 3;
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 3);
 
@@ -2611,7 +2703,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
         "Salta hacia arriba y agarra al enemigo para, después, tirarse en picado.\n ▰ Puedes elegir el lugar en el que aterrizarás moviendo el cursor.",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {1, 1, 1, 1, 1, 1, 1, 1, 1},
-        .reload = {1, 1, 1, 1, 1, 1, 1, 1, 1}};
+        .reload = {12,12,12,11,11,11,11,11,10}};
     gamma->variants[0].countDamages = 1;
     gamma->variants[0].components = malloc(sizeof(DamageComponent) * 1);
 
@@ -2628,7 +2720,7 @@ Character loadBlindadoDefault() {                                   // All Might
     Character c;
     c.base = &blindado;
     c.afinity = &tecnico;
-    c.hp = 400;
+    c.hp = 350;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -3025,15 +3117,15 @@ Character loadEndeavorDefault() {                                             //
     alpha->variants[0] = (QuirkVariant){
         "Rayo abrasador",
         "Lanza rayos de calor con las manos.\n ▰ Mantén pulsado el botón para seguir lanzando los rayos.\n ▰ Si estos impactan contra un enemigo, le provocarán el estado de combustión. ",
-        .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {4,4,4,4,4,4,4,4,4},
-        .reload = {2,2,2,2,2,2,2,2,2}};
+        .typeGestion = PERCENT,
+        .shotsOrPercentUsage = {5,5,5,5,5,5,5,5,5},
+        .reload = {.2,.2,.2,.2,.2,.2,.2,.2,.2}};
     alpha->variants[0].countDamages = 1;
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {20,21,22,23,24,25,26,27,28},
+        .damage = {13,14,15,16,17,18,19,20,21},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -3107,7 +3199,7 @@ Character loadEndeavorIncandescente() {                  // Endeavor Puño (Inca
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Puño",
-        .damage = {60,62,64,68,70,72,74,76,80},
+        .damage = {50,52,54,56,58,60,62,64,65},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
@@ -3132,12 +3224,12 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Tornado",
-        .damage = {5,6,7,7,8,9,10,11,11},
+        .damage = {5,5,5,5,5,5,5,5,5},
         .hits = {7,7,7,7,7,7,7,7,7}
     };
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Muro",
-        .damage = {50,52,54,56,58,60,62,64,66},
+        .damage = {30,32,34,36,38,40,42,44,45},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -3152,7 +3244,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[1].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {50,52,54,56,58,60,62,64,66},
+        .damage = {30,32,34,36,38,40,42,44,45},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
@@ -3370,11 +3462,11 @@ Character loadLadyDefault() {                                               // M
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
-        .name = "Gigante",
+        .name = "Gigante ",
         .damage = {40,43,46,49,52,55,58,61,65},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
-    alpha->variants[0].components[1] = (DamageComponent){
+    alpha->variants[0].components[2] = (DamageComponent){
         .name = "Onda",
         .damage = {30,35,40,45,47,49,51,53,55},
         .hits = {1,1,1,1,1,1,1,1,1}
@@ -3715,7 +3807,7 @@ Character loadAFODefault() {                                               // Al
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Normal",
-        .damage = {58, 60, 62, 66, 68, 70, 72, 74, 78},
+        .damage = {58, 60, 62, 66, 68, 70, 72, 74, 80},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
@@ -3787,7 +3879,7 @@ Character loadAFOYoungDefault() {                                    // All For 
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "laser",
-        .damage = {58, 60, 62, 66, 68, 70, 72, 74, 78},
+        .damage = {56,57,58,60,62,63,65,67,68},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
@@ -3816,7 +3908,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     };
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Explosiones",
-        .damage = {58,60,62,62,64,66,68,70,70},
+        .damage = {58,60,62,62,64,66,68,70,72},
     };
 
     beta->variants[1] = (QuirkVariant){
@@ -3902,7 +3994,8 @@ Character loadDabiDefault() {                                                   
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {42,48,54,60,62.4,64.8,67.2,68.6,72}
+        .damage = {42,44,46,49,51,53,55,57,60},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
     beta->quirkSkill = BETA;
@@ -4281,7 +4374,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
 
     gamma->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {25,26,27,28,29,30,31,32,33},
+        .damage = {35,36,37,38,39,40,41,42,43},
         .hits = {2,2,2,2,2,2,2,2,2}
     };
 
@@ -4471,6 +4564,85 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
+Character loadNagantDefault() {                                         // Katsuki Bakugo
+    Character c;
+    c.base = &nagant;
+    c.afinity = &agresivo;
+    c.hp = 300;
+    strcpy(c.quirkSet.name, "Default");
+
+    QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
+    alpha->quirkSkill = ALPHA;
+    alpha->count = 1;
+    alpha->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    alpha->variants[0] = (QuirkVariant){
+        "Disparo de punta hueca",
+        "Dispara balas desde una gran distancia.\n ▰ Si se golpea a un rival, esta explotará en su interior y le infligirá un daño adicional a sus PS.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {6,6,6,7,7,7,7,7,8},
+        .reload = {1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+    alpha->variants[0].countDamages = 2;
+    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 2);
+
+    alpha->variants[0].components[0] = (DamageComponent){
+        .name = "Disparo",
+        .damage = {54,56,58,60,62,64,66,68,70},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    alpha->variants[0].components[1] = (DamageComponent){
+        .name = "Explosión",
+        .damage = {6,6,6,9,9,9,9,9,12},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
+    beta->quirkSkill = BETA;
+    beta->count = 1;
+    beta->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    beta->variants[0] = (QuirkVariant){
+        "Disparo contrapicado",
+        "Disparos en curva que se elevan hacia el cielo y provocan una lluvia de balas.\n ▰ Atraviesa paredes y obstáculos hacia arriba desde donde se apunta.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {2,2,2,2,2,2,2,2,2},
+        .reload = {7,7,7,6.5,6.5,6.5,6.5,6.5,6}
+    };
+    beta->variants[0].countDamages = 1;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+
+    beta->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {25,26,27,29,30,31,32,33,35},
+        .hits = {3,3,3,3,3,3,3,3,3}
+    };
+QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
+    gamma->quirkSkill = GAMMA;
+    gamma->count = 1;
+    gamma->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    gamma->variants[0] = (QuirkVariant){
+        "Disparo por la espalda",
+        "Dispara múltiples veces para derribar a los enemigos cercanos.\n ▰ En el aire, el daño producido será menor, pero el retroceso aumentará.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {1, 1, 1, 2, 2, 2, 2, 2, 2},
+        .reload = {6,6,6,5,5,5,5,5,4.5}};
+    gamma->variants[0].countDamages = 2;
+    gamma->variants[0].components = malloc(sizeof(DamageComponent) * 2);
+
+    gamma->variants[0].components[0] = (DamageComponent){
+        .name = "Tierra",
+        .damage = {120,124,128,136,140,144,148,152,160},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    gamma->variants[0].components[1] = (DamageComponent){
+        .name = "Aire",
+        .damage = {60,62,64,68,70,72,74,76,80},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    return c;
+}
+
 Character loadOverhaulDefault() {                                            // Overahaul
     Character c;
     c.base = &overhaul;
@@ -4560,6 +4732,7 @@ int loadCharacters(Character *arr) {
     arr[index++] = loadKirishimaDefault();
     arr[index++] = loadKirishimaRedDrive();
     arr[index++] = loadMomoDefault();
+    arr[index++] = loadTokoyamiDefault();
     arr[index++] = loadDenkiDefault();
     arr[index++] = loadDenkiRelampago();
     arr[index++] = loadMonomaDefault();
@@ -4594,6 +4767,7 @@ int loadCharacters(Character *arr) {
     arr[index++] = loadTwiceDefault();
     arr[index++] = loadCompressDefault();
     arr[index++] = loadKurogiriDefault();
+    arr[index++] = loadNagantDefault();
     arr[index++] = loadOverhaulDefault();
     return index;
 }

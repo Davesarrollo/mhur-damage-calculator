@@ -201,7 +201,9 @@ void showQuirkGroup(int c, int quirkSkill) {
 }
 
 void pauseProgram() {
-    printf("\nEnter para mostrar otro personaje");
+    putchar('\n');
+    espacios(tamanoTerminal() - 40);
+    printf("Enter para seleccionar otro personaje ");
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
     getchar();
