@@ -2472,6 +2472,67 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
+Character loadNejireHada() {                                      // Nejire Hadô (Hada)
+    Character c;
+    c.base = &nejire;
+    c.afinity = &soporte;
+    c.hp = 300;
+    strcpy(c.quirkSet.name, "Hada");
+
+    QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
+    alpha->quirkSkill = ALPHA;
+    alpha->count = 1;
+    alpha->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    alpha->variants[0] = (QuirkVariant){
+        "Gring Pike",
+        "Dispara una onda de choque en espiral en forma de lanza.\n ▰ Si el ataque impacta, la onda se propagará y recuperará algunos PG de los aliados a los que haya alcanzado.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {7,7,7,8,8,8,8,8,10},
+        .reload = {1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    alpha->variants[0].countDamages = 1;
+    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+    alpha->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {45,46,47,49,50,51,52,53,55},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
+    beta->quirkSkill = BETA;
+    beta->count = 1;
+    beta->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    beta->variants[0] = (QuirkVariant){
+        "Gring Fairy",
+        "Se desplaza flotando mientras recupera gradualmente los PS de los aliados cercanos.\n ▰ Salta para ascender, agáchate para descender y vuelve a pulsar el botón para despejar la onda de choque.\n ▰ La onda de choque recupera tus PS y los de los aliados cercanos. ",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {3, 3, 3, 3, 3, 3, 3, 3, 3},
+        .reload = {4,4,4,4,4,4,4,4,4}};
+    beta->variants[0].countDamages = 1;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+    beta->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {140,142,144,148,150,152,154,156,160},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+
+QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
+    gamma->quirkSkill = GAMMA;
+    gamma->count = 1;
+    gamma->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    gamma->variants[0] = (QuirkVariant){
+        "Gring Veil",
+        "Protégete a ti y a tus aliados envolviéndoos en una onda de choque giratoria, las cuales desaparecerán tras un periodo de tiempo determinado o al recibir una determinada cantidad de daño.\n ▰ Mientras la onda de choque siga activa, se fortalecerán los siguentes dones especiales:\n\n\tNejire Hadô (Hada)\n\t ▰ Don especial α: aumentará el tamaño del proyectil y el alcance de curación.\n\t ▰ Don especial β: aumenta la velocidad de movimiento mientras el efecto esté activo.\n\n\tMirio Tôgata\n\t ▰ Don especial β: aumenta la velocidad de movimiento mientras el efecto esté activo.\n\n\tMirio Tôgata (Contraataque de cizallas)\n\t ▰ Don especial γ: extiende el tiempo disponible para la realización de contraataques.\n\n\tTamaki Amajiki\n\t ▰ Don especial γ: la carga se completa de manera inmediata al activarse el efecto.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {1, 1, 1, 1, 1, 1, 1, 1, 1},
+        .reload = {10,10,10,9,9,9,9,9,8}};
+    gamma->variants[0].countDamages = 0;
+    gamma->variants[0].components = NULL;
+
+    return c;
+}
+
 Character loadShinsoDefault() {                                         // Hitoshi Shinso
     Character c;
     c.base = &shinso;
@@ -4716,6 +4777,106 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
+Character loadOverhaulPrecipicio() {                      // Overhaul (Precipicio Mortal)
+    Character c;
+    c.base = &overhaul;
+    c.afinity = &tanque;
+    c.hp = 300;
+    strcpy(c.quirkSet.name, "Precipicio mortal");
+
+    QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
+    alpha->quirkSkill = ALPHA;
+    alpha->count = 2;
+    alpha->variants = malloc(sizeof(QuirkVariant) * 2);
+
+    alpha->variants[0] = (QuirkVariant){
+        "Lluvia de otoño",
+        " Dispara una ráfaga continua de disparos rocosos que persiguen a sus objetivos. \n ▰ Combínalo con los controles de movimiento para poder atacar mientras te desplazas por el suelo.",
+        .typeGestion = PERCENT,
+        .shotsOrPercentUsage = {11,11,11,11,11,11,11,11,11},
+        .reload = {.2,.2,.2,.17,.17,.17,.17,.17,.15}
+    };
+    alpha->variants[0].countDamages = 1;
+    alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+
+    alpha->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {6,7,8,8,9,10,11,12,12},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    alpha->variants[1] = (QuirkVariant){
+        "Disparo lapidario",
+        "En el modo puntería, dispara balas rocosas y afiladas.",
+        .typeGestion = PERCENT,
+        .shotsOrPercentUsage = {15,15,15,15,15,15,15,15,15},
+        .reload = {.2,.2,.2,.17,.17,.17,.17,.17,.15}
+    };
+    alpha->variants[1].countDamages = 1;
+    alpha->variants[1].components = malloc(sizeof(DamageComponent) * 1);
+
+    alpha->variants[1].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {54,56,58,60,62,64,66,68,70},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+
+QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
+    beta->quirkSkill = BETA;
+    beta->count = 1;
+    beta->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    beta->variants[0] = (QuirkVariant){
+        "Precipicio mortal",
+        "Impúlsate con el pilar que se elevará desde tus pies para subir.\n ▰ Combínalo con los controles de movimiento para que la forma del pilar cambie y tome un curso diagonal.\n ▰  A medida que el pilar ascienda, podrás usar el botón de salto para impulsarte y saltar.\n ▰ También podrás usar el don especial α (Lluvia de otoño). ",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 2},
+        .reload = {12,12,12,11,11,11,11,11,10}};
+    beta->variants[0].countDamages = 1;
+    beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
+
+    beta->variants[0].components[0] = (DamageComponent){
+        .name = "Daño",
+        .damage = {54,56,58,60,62,64,66,68,70},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
+    gamma->quirkSkill = GAMMA;
+    gamma->count = 1;
+    gamma->variants = malloc(sizeof(QuirkVariant) * 1);
+
+    gamma->variants[0] = (QuirkVariant){
+        "Ataque ataúd",
+        "Carga hacia delante y derriba a tus enemigos.\n ▰ Se puede cambiar la trayectoria del ataque desde el suelo y, en el aire, se mueve en dirección hacia el objetivo.\n ▰ Los enemigos alcanzados quedarán atrapados bajo las rocas hasta que estas exploten.",
+        .typeGestion = CHARGES,
+        .shotsOrPercentUsage = {1, 1, 1, 1, 1, 1, 1, 1, 1},
+        .reload = {12, 12, 12, 11, 11, 11, 11, 11, 10}
+    };
+    gamma->variants[0].countDamages = 4;
+    gamma->variants[0].components = malloc(sizeof(DamageComponent) * 4);
+
+    gamma->variants[0].components[0] = (DamageComponent){
+        .name = "Golpe(tierra)",
+        .damage = {50,50,50,50,50,50,50,50,50},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    gamma->variants[0].components[1] = (DamageComponent){
+        .name = "Golpe(aire)",
+        .damage = {10,10,10,10,10,10,10,10,10},
+        .hits = {1,1,1,1,1,1,1,1,1}
+    };
+    gamma->variants[0].components[2] = (DamageComponent){
+        .name = "Rocas",
+        .damage = {4,4,4,4,4,4,4,4,4},
+        .hits = {4,4,4,4,4,4,4,4,4}
+    };
+    gamma->variants[0].components[3] = (DamageComponent){
+        .name = "Explosión",
+        .damage = {58,62,66,70,73,76,79,82,84},
+        .hits = {1,1,1,1,1,1,1,1,1} 
+    };
+    return c;
+}
+
 int loadCharacters(Character *arr) {
     int index = 0;
     arr[index++] = loadMidoriyaDefault();
@@ -4743,6 +4904,7 @@ int loadCharacters(Character *arr) {
     arr[index++] = loadMirioCizallas();
     arr[index++] = loadTamakiDefault();
     arr[index++] = loadNejireDefault();
+    arr[index++] = loadNejireHada();
     arr[index++] = loadShinsoDefault();
     arr[index++] = loadAllMightDefault();
     arr[index++] = loadAllMightAmetralladora();
@@ -4769,5 +4931,6 @@ int loadCharacters(Character *arr) {
     arr[index++] = loadKurogiriDefault();
     arr[index++] = loadNagantDefault();
     arr[index++] = loadOverhaulDefault();
+    arr[index++] = loadOverhaulPrecipicio();
     return index;
 }

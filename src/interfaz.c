@@ -183,11 +183,13 @@ void showQuirkGroup(int c, int quirkSkill) {
             for (int k = 0; k < variant.countDamages; k++) {         // Contador daños
                 int tamanoEspacio = strlen(variant.components[k].name) / 2 - 1;
                 float danoBase = variant.components[k].damage[lvl];
+                float multiplicadorDano = 1; // Aquí puedes aplicar cualquier multiplicador específico del personaje o del quirk
+                float danoCalculado = danoBase * multiplicadorDano;
                 int hits = variant.components[k].hits[lvl]; 
                
                 if (hits == 0) hits = 1;                           //mientras inicializo hits
                
-                float danoTotal = danoBase * hits;
+                float danoTotal = danoCalculado * hits;
                 
                 espacios(tamanoEspacio);
                 printf("%3.0f", ceil(danoTotal));// daño(s)

@@ -9,6 +9,7 @@ int mhuRandom(int valorSuperior);
 int randCharacter();
 int randAfinnity();
 int randLevel();
+int randMap();
 
 const char *afinnitis[5] = {"\x1b[93m Tanque \x1b[0m",
                             "\x1b[31m Agresivo \x1b[0m",
@@ -40,6 +41,7 @@ const char *listRandomCharacters[] = {"\x1b[93m Izuku Midoriya\x1b[0m",
                             "\x1b[35m Mirio Tôgata(Contraataque de cizallas)\x1b[0m",
                             "\x1b[31m Tamaki Amakiki\x1b[0m",
                             "\x1b[35m Nejire Hadô\x1b[0m",
+                            "\x1b[35m Nejire Hadô(Hada)\x1b[0m",
                             "\x1b[31m Hitoshi Shinso\x1b[0m",
                             "\x1b[93m All Might\x1b[0m",
                             "\x1b[36m All Might(Ametralladora)\x1b[0m",
@@ -63,9 +65,10 @@ const char *listRandomCharacters[] = {"\x1b[93m Izuku Midoriya\x1b[0m",
                             "\x1b[36m Himiko Toga(Baile del aguijón)\x1b[0m",
                             "\x1b[36m Twice\x1b[0m",
                             "\x1b[32m Mr. Compress\x1b[0m",
-                            "\x1b[32m Overhaul\x1b[0m",
                             "\x1b[31m Lady Nagant\x1b[0m",
-                            "\x1b[32m Kurogiri\x1b[0m"};
+                            "\x1b[32m Kurogiri\x1b[0m",
+                            "\x1b[32m Overhaul\x1b[0m",
+                            "\x1b[93m Overhaul(Precipicio mortal)\x1b[0m"};
 const char *frases9[10] = {"No juegas, nomás respiras y te toca el 9 -_-",
                            "Felicidades, ya no necesitas manos.",
                            "Nivel 9... papá, estás tan roto que deberían banearte hasta del tutorial.",
@@ -87,6 +90,19 @@ const char *frases1[10] = {"Nivel 1... ni el tutorial te respeta.",
                            "Bienvenido a modo leyenda.",
                            "¿Mala suerte o entrenamiento con peso?."
                         };
+const char *listRandomMaps[] = {"Neo Academía",
+                                "USJ Ver.03",
+                                "Ciudad del Caos",
+                                "Isla Yûei (UA) Ver.02",
+                                "USJ Ver.02",
+                                "Isla Yûei (UA)",
+                                "USJ",};
+
+int character = 0;
+int afinnity = 0;
+int levelRand = 0;
+int map = 0;
+
 
 void random(){
     srand(time(NULL));
@@ -105,32 +121,48 @@ void random(){
     for (int i = 0; i < anchoTerminal-1; i++)
         printf("=");
     printf("\x1b[0m\n");
-    sleep(1);
 
-    getchar();
-    while (1){
-        printf("\tPersonaje:%s\n", listRandomCharacters[randCharacter()]);
-        printf("\tAfinidad: %s\n", afinnitis[randAfinnity() - 1]);
-        int level = randLevel();
-        printf("\tNivel:     %d", level);
-        if (level==1){
-            printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases1[rand() % 10]);
-        }
-        if (level==9)
-            printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases9[rand() % 10]);
+    printf("\n ¿Aleatorizar mapa? 1. Sí  0. No\n");
+    scanf("%d", &map);
+    printf("\n ¿Aleatorizar personaje? 1. Sí  0. No\n");
+    scanf("%d", &character);
+    printf("\n ¿Aleatorizar afinidad? 1. Sí  0. No\n");
+    scanf("%d", &afinnity);
+    printf("\n ¿Aleatorizar nivel? 1. Sí  0. No\n");
+    scanf("%d", &levelRand);
 
-        // Leer la entrada del usuario
+    while (1){                                                      //datos Randomizados
         putchar('\n');
         char input[16];
         fgets(input, sizeof(input), stdin);
-            
-        if (input[0] == '0')
-            break;
         
         printf("\x1b[38;5;%dm", colorResalte);
         for (int i = 0; i < anchoTerminal-1; i++)
             printf("=");
         printf("\x1b[0m\n");
+        
+        if (input[0] == '0')
+            break;
+        
+        if (map)
+            printf("\tMapa:      %s\n", listRandomMaps[randMap()]);
+        if (character)
+            printf("\tPersonaje:%s\n", listRandomCharacters[randCharacter()]);
+        if (afinnity)
+            printf("\tAfinidad: %s\n", afinnitis[randAfinnity() - 1]);
+        if (levelRand){
+            int level = randLevel();
+            printf("\tNivel:     %d", level);
+            if (level==1){
+                printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases1[rand() % 10]);
+            }
+            if (level==9)
+            printf("\x1b[38;5;%dm\t\t%s", colorResalte, frases9[rand() % 10]);
+            printf("\x1b[0m");
+        }
+
+        
+     
         
     }
     return;
@@ -147,4 +179,8 @@ int randAfinnity(){
 }
 int randLevel(){
     return mhuRandom(9);
+}
+
+int randMap(){
+    return mhuRandom(sizeof(listRandomMaps) / sizeof(listRandomMaps[0])) - 1;
 }

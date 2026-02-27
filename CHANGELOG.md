@@ -1,4 +1,13 @@
 # CHANGELOG
+
+## [2.2.0] - 2026-02-27
+### Added
+- Nuevos personajes: 
+  - Nejire Hado (hada)
+  - Overhaul (Precipicio Mortal)
+### Changed
+- Actualizadas estadísticas de todos los personajes al parche actual
+
 ## [2.1.0] - 2026-01-30
 ### Added
 - Nuevo personaje: Fumikage Tokoyami

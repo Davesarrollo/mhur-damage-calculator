@@ -32,7 +32,7 @@ int main() {
         espacios(centrar);printf("║ ████    ████ ████   ████ ░░██████   ████   ████ ║\n");
         espacios(centrar);printf("║░░░░    ░░░░ ░░░░  ░░░░░   ░░░░░░   ░░░░   ░░░░  ║\n");
         espacios(centrar);printf("║  ┌───────────────────────────────────────────┐  ║\n");
-        espacios(centrar);printf("║  │    1. Estadísticas de Personajes   📊     │  ║\n");
+        espacios(centrar);printf("║  │    1. Estadísticas base            📊     │  ║\n");
         espacios(centrar);printf("║  ├───────────────────────────────────────────┤  ║\n");
         espacios(centrar);printf("║  │    2. Randomizador                 🎲     │  ║\n");
         espacios(centrar);printf("║  ├───────────────────────────────────────────┤  ║\n");
