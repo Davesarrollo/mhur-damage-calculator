@@ -457,8 +457,8 @@ Character loadMidoriyaDefault() {                                       // Izuku
         "St. Louis Smash",
         "Arremete dando una fuerte patada voladora hacia su objetivo.",
         CHARGES,
-        .reload = {1, 1, 1, 1, 1, 1, 1, 1, 1},
-        .shotsOrPercentUsage = {8, 8, 8, 6, 6, 6, 6, 6, 4},
+        .reload = {1, 1, 1, 2, 2, 2, 2, 2, 2},
+        .shotsOrPercentUsage = {8, 8, 8, 8, 8, 8, 8, 8, 6},
     };
     beta->variants[0].countDamages = 1; 
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 1);
@@ -842,7 +842,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Girando",
-        .damage = {35, 37, 39, 41, 42, 43, 44, 45, 47},
+        .damage = {40, 42, 44, 46, 47, 48, 49, 50, 52},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     beta->variants[0].components[1] = (DamageComponent){
@@ -1003,7 +1003,7 @@ Character loadIidaDefault() {                                               // T
     Character c;
     c.base = &iida;
     c.afinity = &dinamico;
-    c.hp = 250;
+    c.hp = 300;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -1541,7 +1541,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
         "Creación - Tempestad de balas",
         "Crea un cañón y lo coloca en el suelo para disparar.\n ▰ Los proyectiles impactarán como un fuego artificial.",
         .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {1, 1, 1, 2, 2, 2, 2, 2, 3},
+        .shotsOrPercentUsage = {2, 2, 2, 2, 2, 2, 2, 2, 3},
         .reload = {7,7,7,7,7,7,7,7,7}};
     gamma->variants[0].countDamages = 2;
     gamma->variants[0].components = malloc(sizeof(DamageComponent) * 2);
@@ -1560,7 +1560,7 @@ QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
     return c;
 }
 
-Character loadTokoyamiDefault() {                                         // Katsuki Bakugo
+Character loadTokoyamiDefault() {                                       // Katsuki Bakugo
     Character c;
     c.base = &tokoyami;
     c.afinity = &tanque;
@@ -2048,7 +2048,7 @@ Character loadIbaraDefault() {                                          // Ibara
         "Purificación",
         "Ataque en el que estira y expande su cabello de sarmientos.\n ▰ Cuando usa el modo de puntería, el cabello permanece unido, aumentando el alcance y la potencia del ataque.\n ▰ Este ataque es capaz de atravesar barreras y escudos enemigos.",
         .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {2,2,2,3,3,3,3,3,4},
+        .shotsOrPercentUsage = {3,3,3,4,4,4,4,4,5},
         .reload = {2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5}
     };
     alpha->variants[0].countDamages = 2;
@@ -2124,7 +2124,7 @@ Character loadMirioDefault() {                                            // Mir
     Character c;
     c.base = &mirio;
     c.afinity = &dinamico;
-    c.hp = 225;
+    c.hp = 250;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -2616,7 +2616,7 @@ Character loadAllMightDefault() {                                            // 
     Character c;
     c.base = &allmight;
     c.afinity = &tanque;
-    c.hp = 300;
+    c.hp = 350;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -2635,13 +2635,13 @@ Character loadAllMightDefault() {                                            // 
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Golpe",
-        .damage = {58,60,62,64,66,68,70,72,73},
+        .damage = {63,65,67,69,71,73,75,77,78},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Onda",
-        .damage = {0,0,0,20,21,22,23,24,25},
+        .damage = {0,0,0,25,26,27,28,29,30},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     
@@ -2732,7 +2732,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
         "Ataque que lanza una gran onda de choque con un tajo cruzado.\n ▰ Mantén pulsado el botón para lanzarte hacia delante y golpear a los enemigos con ese tajo cruzado. ",
         .typeGestion = CHARGES,
         .shotsOrPercentUsage = {3, 3, 3, 3, 3, 3, 4, 4, 4},
-        .reload = {7.7,7.7,7.7,7.2,7.2,7.2,7,2,6.8}};
+        .reload = {9,9,9,8.5,8.5,8.5,8.5,8.5,8}};
     beta->variants[0].countDamages = 3;
     beta->variants[0].components = malloc(sizeof(DamageComponent) * 3);
 
@@ -2818,7 +2818,7 @@ Character loadBlindadoDefault() {                                   // All Might
 
     alpha->variants[1].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {55,58,61,65,67,69,71,73,75},
+        .damage = {52,54,56,58,60,62,64,66,68},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -2890,7 +2890,8 @@ Character loadBlindadoDefault() {                                   // All Might
 
     gamma->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {25,25,25,25,25,25,25,25,25}
+        .damage = {10,10,10,10,10,10,10,10,10},
+        .hits = {1,1,1,1,1,1,1,1,1}
     };
 
     return c;
@@ -3186,7 +3187,7 @@ Character loadEndeavorDefault() {                                             //
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {13,14,15,16,17,18,19,20,21},
+        .damage = {18,18,18,19,19,19,20,20,21},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -3373,12 +3374,12 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Inicio",
-        .damage = {60,62,64,68,70,72,74,76,80},
+        .damage = {65,67,69,73,75,77,79,81,85},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     beta->variants[0].components[1] = (DamageComponent){
         .name = "Giro",
-        .damage = {80,85,90,100,105,110,115,120,125},
+        .damage = {90,95,100,110,115,120,125,130,135},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
@@ -3500,7 +3501,7 @@ Character loadLadyDefault() {                                               // M
     Character c;
     c.base = &lady;
     c.afinity = &tanque;
-    c.hp = 300;
+    c.hp = 350;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -3524,12 +3525,12 @@ Character loadLadyDefault() {                                               // M
     };
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Gigante ",
-        .damage = {40,43,46,49,52,55,58,61,65},
+        .damage = {50,53,56,59,62,65,68,71,75},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[2] = (DamageComponent){
         .name = "Onda",
-        .damage = {30,35,40,45,47,49,51,53,55},
+        .damage = {40,45,50,55,57,59,61,63,65},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
@@ -3548,7 +3549,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Normal",
-        .damage = {35,37,39,40,42,44,46,48,50},
+        .damage = {45,47,49,50,52,54,56,58,60},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 
@@ -3780,7 +3781,7 @@ Character loadShigarakiMilManos() {    // Tomura Shigaraki (Destrucción de las 
 
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Onda",
-        .damage = {25,25,25,25,25,25,25,25,25},
+        .damage = {12,12,12,12,12,12,12,12,12},
         .hits = {2,2,2,2,2,2,2,2,2}
     };
 
@@ -4233,7 +4234,7 @@ Character loadTogaDefault() {                                              // Hi
         "Navajazo lento",
         "Ataque con el que lanza cuchillos. Mantén pulsado el botón para lanzarlos continuamente.",
         .typeGestion = CHARGES,
-        .shotsOrPercentUsage = {16,18,20,20,22,24,26,28,30},
+        .shotsOrPercentUsage = {20,22,24,25,26,27,28,29,30},
         .reload = {.5,.5,.5,.5,.5,.5,.5,.5,.5}};
     alpha->variants[0].countDamages = 1;
     alpha->variants[0].components = malloc(sizeof(DamageComponent) * 1);
@@ -4568,7 +4569,7 @@ QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
 
     beta->variants[0].components[0] = (DamageComponent){
         .name = "Daño",
-        .damage = {80,83,86,90,92,94,96,98,100},
+        .damage = {100,103,106,110,112,114,116,118,120},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *gamma = &c.quirkSet.quirkGroup[GAMMA];
@@ -4629,7 +4630,7 @@ Character loadNagantDefault() {                                         // Katsu
     Character c;
     c.base = &nagant;
     c.afinity = &agresivo;
-    c.hp = 300;
+    c.hp = 250;
     strcpy(c.quirkSet.name, "Default");
 
     QuirkGroup *alpha = &c.quirkSet.quirkGroup[ALPHA];
@@ -4649,12 +4650,12 @@ Character loadNagantDefault() {                                         // Katsu
 
     alpha->variants[0].components[0] = (DamageComponent){
         .name = "Disparo",
-        .damage = {54,56,58,60,62,64,66,68,70},
+        .damage = {47,49,51,53,55,57,59,61,63},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
     alpha->variants[0].components[1] = (DamageComponent){
         .name = "Explosión",
-        .damage = {6,6,6,9,9,9,9,9,12},
+        .damage = {6,6,6,8,8,8,8,8,10},
         .hits = {1,1,1,1,1,1,1,1,1}
     };
 QuirkGroup *beta = &c.quirkSet.quirkGroup[BETA];
