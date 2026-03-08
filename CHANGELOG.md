@@ -1,4 +1,7 @@
 # CHANGELOG
+## [2.2.1] - 2026-08-03
+### Changed
+- Actualizadas estadísticas de todos los personajes al parche actual
 
 ## [2.2.0] - 2026-02-27
 ### Added
