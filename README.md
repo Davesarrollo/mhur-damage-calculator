@@ -46,7 +46,7 @@ Incluye aleatorización de:
 - Escenarios
 - Nivel
 ```
-        11qMapa:      Isla Yûei (UA)
+        Mapa:      Isla Yûei (UA)
         Personaje: Himiko Toga(Baile del aguijón)
         Afinidad:  Agresivo 
         Nivel:     5
